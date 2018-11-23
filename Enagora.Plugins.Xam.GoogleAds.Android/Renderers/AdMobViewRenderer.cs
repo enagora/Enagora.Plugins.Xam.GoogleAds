@@ -20,6 +20,8 @@ namespace Enagora.Plugins.Xam.GoogleAds.Android.Renderers
 {
     public class AdMobViewRenderer : ViewRenderer<AdMobView, AdView>
     {
+        AdView myAdView;
+
         public AdMobViewRenderer(Context context) : base(context) { }
 
         protected override void OnElementChanged(ElementChangedEventArgs<AdMobView> e)
@@ -35,24 +37,27 @@ namespace Enagora.Plugins.Xam.GoogleAds.Android.Renderers
             base.OnElementPropertyChanged(sender, e);
 
             if (e.PropertyName == nameof(AdView.AdUnitId))
+            {
                 Control.AdUnitId = Element.AdUnitId;
+                CrossGoogleAds.Current.LoadBannerAdView(myAdView);
+            }
         }
 
         private AdView CreateAdView()
         {
-            var adView = new AdView(Context)
+            myAdView = new AdView(Context)
             {
                 AdSize = AdSize.SmartBanner,
                 AdUnitId = Element.AdUnitId
             };
 
-            adView.LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
-            //CrossGoogleAds.Current.LoadAdView(adView);
+            myAdView.LayoutParameters = new LinearLayout.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
+            CrossGoogleAds.Current.LoadBannerAdView(myAdView);
             
 
-            adView.LoadAd(new AdRequest.Builder().Build());
+            //adView.LoadAd(new AdRequest.Builder().Build());
 
-            return adView;
+            return myAdView;
         }
     }
 }

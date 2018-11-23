@@ -16,6 +16,8 @@ namespace Enagora.Plugins.Xam.GoogleAds
         public event EventHandler InterstitialAdLoaded;
         public event EventHandler InterstitialAdClosed;
 
+        public event EventHandler BannerAdLoaded;
+
         public void Initialize(string appId)
         {
             throw new NotImplementedException();
@@ -31,22 +33,22 @@ namespace Enagora.Plugins.Xam.GoogleAds
             throw new NotImplementedException();
         }
 
-        public void LoadAd(string adUnitId)
+        public void LoadInterstitialAd(string adUnitId)
         {
             throw new NotImplementedException();
         }
 
-        public void LoadAdView(object view)
+        public void LoadBannerAdView(object view)
         {
             throw new NotImplementedException();
         }
 
-        public void RefreshAdView()
+        public void RefreshBannerAdView()
         {
             throw new NotImplementedException();
         }
 
-        public void Show()
+        public void InterstitialShow()
         {
             throw new NotImplementedException();
         }

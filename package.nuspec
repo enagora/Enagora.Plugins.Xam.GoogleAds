@@ -2,13 +2,14 @@
 <package>
   <metadata minClientVersion="2.8.1">
     <id>Enagora.Plugins.Xam.GoogleAds</id>
-    <version>0.0.3-beta</version>
+    <version>0.0.5-beta</version>
     <title>Xamarin Google Ads Plugin</title>
     <authors>Uraitz Olaizola</authors>
     <owners>Enagora</owners>
-    <!--<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>-->
-    <iconUrl>https://www.enagora.com/wp-content/uploads/2016/11/cropped-logo-2-192x192.png</iconUrl>
+    <licenseUrl>https://github.com/enagora/Enagora.Plugins.Xam.GoogleAds/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://www.enagora.com/enagora-plugins-xam-googleads/</projectUrl>
+    <iconUrl>https://www.enagora.com/enagora-logo-300x300.png</iconUrl>
+    <repository type="git" url="https://github.com/enagora/Enagora.Plugins.Xam.GoogleAds" />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Use Google ads on xamarin forms easy</description>
     <releaseNotes>-First build, only for test</releaseNotes>

@@ -37,7 +37,7 @@ namespace Enagora.Plugins.Xam.GoogleAds.iOS
                 RootViewController = GetVisibleViewController()
             };
 
-            CrossGoogleAds.Current.LoadAdView(bannerView);
+            CrossGoogleAds.Current.LoadBannerAdView(bannerView);
 
             //bannerView.LoadRequest(GetRequest());
 

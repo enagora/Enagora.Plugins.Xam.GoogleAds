@@ -18,6 +18,8 @@ namespace Enagora.Plugins.Xam.GoogleAds
         public event EventHandler InterstitialAdLoaded;
         public event EventHandler InterstitialAdClosed;
 
+        public event EventHandler BannerAdLoaded;
+
         private Google.MobileAds.Interstitial interstitial;
         private BannerView banner;
 
@@ -37,7 +39,7 @@ namespace Enagora.Plugins.Xam.GoogleAds
             throw new NotImplementedException();
         }
 
-        public void LoadAd(string adUnitId)
+        public void LoadInterstitialAd(string adUnitId)
         {
             if (string.IsNullOrEmpty(AdUnitId))
             {
@@ -63,20 +65,26 @@ namespace Enagora.Plugins.Xam.GoogleAds
             interstitial.LoadRequest(Request.GetDefaultRequest());
         }
 
-        public void LoadAdView(object view)
+        public void LoadBannerAdView(object view)
         {
             banner = (BannerView)view;
             banner.LoadRequest(Request.GetDefaultRequest());
+            banner.AdReceived += OnBannerAdLoaded;
 
         }
 
-        public void RefreshAdView()
+        public void RefreshBannerAdView()
         {
             //No refresh method in iOS.
                 
         }
 
-        public void Show()
+        private void OnBannerAdLoaded(object sender, EventArgs e)
+        {
+            BannerAdLoaded?.Invoke(sender, e);
+        }
+
+        public void InterstitialShow()
         {
             //// We need to wait until the Intersitial is ready to show
             //do

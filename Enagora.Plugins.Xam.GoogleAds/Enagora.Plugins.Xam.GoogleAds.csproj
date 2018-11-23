@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.0.3</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://www.enagora.com/enagora-plugins-xam-googleads/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/enagora/Enagora.Plugins.Xam.GoogleAds</RepositoryUrl>
+    <Copyright>Enagora 2018</Copyright>
+    <PackageIconUrl>https://www.enagora.com/enagora-logo-300x300.png</PackageIconUrl>
+    <PackageTags>GoogleAds, ads, xamarin forms</PackageTags>
+    <PackageLicenseUrl>https://github.com/enagora/Enagora.Plugins.Xam.GoogleAds/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

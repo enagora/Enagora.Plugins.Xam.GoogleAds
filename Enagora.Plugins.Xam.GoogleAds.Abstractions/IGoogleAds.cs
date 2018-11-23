@@ -9,16 +9,36 @@ namespace Enagora.Plugins.Xam.GoogleAds.Interfaces
         event EventHandler InterstitialAdLoaded;
         event EventHandler InterstitialAdClosed;
 
+        event EventHandler BannerAdLoaded;
+
         string AppId { get; set; }
         string AdUnitId { get; set; }
 
 
         //Methods
         void Initialize(string appId);
-        void LoadAdView(object view);
-        void RefreshAdView();
-        void LoadAd(string adUnitId);
-        void Show();
+
+        /// <summary>
+        /// Loads a banner ad
+        /// </summary>
+        /// <param name="view"></param>
+        void LoadBannerAdView(object view);
+
+        /// <summary>
+        /// Refresh ad information with a new one
+        /// </summary>
+        void RefreshBannerAdView();
+
+        /// <summary>
+        /// Load interstitial style ad
+        /// </summary>
+        /// <param name="adUnitId">googleAds ad id</param>
+        void LoadInterstitialAd(string adUnitId);
+
+        /// <summary>
+        /// Show 
+        /// </summary>
+        void InterstitialShow();
         bool IsLoaded();
         bool IsLoading();
     }

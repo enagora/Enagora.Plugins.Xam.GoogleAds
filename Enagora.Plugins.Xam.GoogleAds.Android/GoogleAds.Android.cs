@@ -15,6 +15,20 @@ using Enagora.Plugins.Xam.GoogleAds.Interfaces;
 
 namespace Enagora.Plugins.Xam.GoogleAds
 {
+
+    public class BannerListener : AdListener
+    {
+        GoogleAds MyBase;
+        public BannerListener(GoogleAds obj)
+        {
+            MyBase = obj;
+        }
+        public override void OnAdLoaded()
+        {
+            MyBase.Banner_AdLoaded();
+        }
+    }
+
     public class GoogleAds :  IGoogleAds
     {
         InterstitialAd interstial;
@@ -25,6 +39,11 @@ namespace Enagora.Plugins.Xam.GoogleAds
 
         public event EventHandler InterstitialAdLoaded;
         public event EventHandler InterstitialAdClosed;
+
+        public event EventHandler BannerAdLoaded;
+
+        
+
 
         public void Initialize(string appid)
         {
@@ -43,23 +62,42 @@ namespace Enagora.Plugins.Xam.GoogleAds
             return interstial.IsLoading;
         }
 
-        public void LoadAdView(object view)
+        /// <summary>
+        /// Load banner ad
+        /// </summary>
+        /// <param name="view">container object</param>
+        public void LoadBannerAdView(object view)
         {
             //if(banner == null)
             banner = (AdView)view;
+            
             banner.LoadAd(new AdRequest.Builder().Build());
+           
+            banner.AdListener = new BannerListener(this);
+
+
+
+
             banner.RefreshDrawableState();
 
 
         }
 
-        public void RefreshAdView()
+        /// <summary>
+        /// Refresh ad information with a new one
+        /// </summary>
+        public void RefreshBannerAdView()
         {
             if (banner != null)
                 banner.RefreshDrawableState();
         }
 
-        public void LoadAd(string adUnitId)
+
+        /// <summary>
+        /// Load interstitial style ad
+        /// </summary>
+        /// <param name="adUnitId">googleAds ad id</param>
+        public void LoadInterstitialAd(string adUnitId)
         {
             if (interstial == null)
             {
@@ -76,10 +114,14 @@ namespace Enagora.Plugins.Xam.GoogleAds
             interstial.LoadAd(new AdRequest.Builder().Build());
         }
 
+        internal void Banner_AdLoaded()
+        {
+            BannerAdLoaded?.Invoke(null, null);
+        }
 
         private void Interstial_RewardedVideoAdClosed(object sender, EventArgs e)
         {
-            LoadAd(interstial.AdUnitId);
+            LoadInterstitialAd(interstial.AdUnitId);
             InterstitialAdClosed?.Invoke(this, e);
         }
 
@@ -88,7 +130,7 @@ namespace Enagora.Plugins.Xam.GoogleAds
             InterstitialAdLoaded?.Invoke(this, e);
         }
 
-        public void Show()
+        public void InterstitialShow()
         {
             if (interstial.IsLoaded)
                 interstial.Show();
