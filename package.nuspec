@@ -11,8 +11,8 @@
     <iconUrl>https://www.enagora.com/enagora-logo-300x300.png</iconUrl>
     <repository type="git" url="https://github.com/enagora/Enagora.Plugins.Xam.GoogleAds" />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Use Google ads on xamarin forms easy</description>
-    <releaseNotes>-First build, only for test</releaseNotes>
+    <description>Use Google ads on xamarin forms easy way</description>
+    <releaseNotes>Beta version for Android and iOS</releaseNotes>
     <copyright>Enagora</copyright>
     <tags>xamarin google ads firebase banner interstitials</tags>
    
