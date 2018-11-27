@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="2.8.1">
     <id>Enagora.Plugins.Xam.GoogleAds</id>
-    <version>0.0.5-beta</version>
+    <version>0.0.6-beta</version>
     <title>Xamarin Google Ads Plugin</title>
     <authors>Uraitz Olaizola</authors>
     <owners>Enagora</owners>
@@ -25,8 +25,9 @@
         <dependency id="Xamarin.GooglePlayServices.Ads.Lite" version="60.1142.1"/>
       </group>
       <group targetFramework="Xamarin.iOS10">
-        <dependency id="Xamarin.Firebase.iOS.AdMob" version="7.31.0.2"/>
-        <dependency id="Xamarin.Google.iOS.MobileAds" version="7.31.0.2"/>
+        <!--<dependency id="Xamarin.Firebase.Ads" version="70.1501.0-preview2" />
+        <dependency id="Xamarin.Firebase.iOS.AdMob" version="7.32.0"/>-->
+        <dependency id="Xamarin.Google.iOS.MobileAds" version="7.32.0"/>
       </group>
       <group targetFramework="uap">
         <!--<dependeciy id="iTextSharp" version="5.5.9" />-->
