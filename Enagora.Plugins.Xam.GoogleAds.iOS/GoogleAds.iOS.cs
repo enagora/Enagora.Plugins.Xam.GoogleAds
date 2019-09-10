@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Enagora.Plugins.Xam.GoogleAds.Classes;
 using Enagora.Plugins.Xam.GoogleAds.Interfaces;
 using Foundation;
 using Google.MobileAds;
@@ -20,7 +21,7 @@ namespace Enagora.Plugins.Xam.GoogleAds
 
         public event EventHandler BannerAdLoaded;
 
-        private Google.MobileAds.Interstitial interstitial;
+        private InterstitialEx interstitial;
         private BannerView banner;
 
         public void Initialize(string appId)
@@ -31,21 +32,20 @@ namespace Enagora.Plugins.Xam.GoogleAds
 
         public bool IsLoaded()
         {
-            throw new NotImplementedException();
+            return interstitial.IsLoaded;
         }
 
         public bool IsLoading()
         {
-            throw new NotImplementedException();
+            return interstitial.IsLoading;
         }
 
         public void LoadInterstitialAd(string adUnitId)
         {
-            if (string.IsNullOrEmpty(AdUnitId))
+            if (string.IsNullOrEmpty(AdUnitId) || interstitial == null)
             {
-                AdUnitId = AdUnitId;
-                interstitial = new Interstitial(adUnitId);
-
+                interstitial = new InterstitialEx(adUnitId);
+                AdUnitId = adUnitId;
                 interstitial.ScreenDismissed += (sender, e) =>
                 {
                     interstitial.LoadRequest(Request.GetDefaultRequest());
@@ -59,7 +59,7 @@ namespace Enagora.Plugins.Xam.GoogleAds
                 interstitial.ReceiveAdFailed += (sender, e) =>
                 {
                     System.Diagnostics.Debug.WriteLine("AD RECEIVE FAILED!");
-                };
+                }; 
             }
 
             interstitial.LoadRequest(Request.GetDefaultRequest());

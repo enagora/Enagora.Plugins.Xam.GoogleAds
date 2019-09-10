@@ -12,10 +12,16 @@ namespace Enagora.Plugins.Xam.GoogleAds.iOS
 {
     public class AdMobViewRenderer : ViewRenderer<Abstractions.Views.AdMobView, BannerView>
     {
+        
         protected override void OnElementChanged(ElementChangedEventArgs<AdMobView> e)
         {
             base.OnElementChanged(e);
-            if (Control == null)
+            if (e.OldElement != null || Element == null)
+            {
+                return;
+            }
+
+            if (Element !=null &&  Control == null)
             {
                 SetNativeControl(CreateBannerView());
             }
@@ -24,6 +30,8 @@ namespace Enagora.Plugins.Xam.GoogleAds.iOS
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
+            if (Control == null || Element == null)
+                return;
 
             if (e.PropertyName == nameof(BannerView.AdUnitID))
                 Control.AdUnitID = Element.AdUnitId;

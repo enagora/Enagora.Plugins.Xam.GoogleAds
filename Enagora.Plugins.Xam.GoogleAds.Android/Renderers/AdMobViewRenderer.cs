@@ -27,9 +27,13 @@ namespace Enagora.Plugins.Xam.GoogleAds.Android.Renderers
         protected override void OnElementChanged(ElementChangedEventArgs<AdMobView> e)
         {
             base.OnElementChanged(e);
-
+            if (e.OldElement != null || Element == null)
+            {
+                return;
+            }
+            
             if (e.NewElement != null && Control == null)
-                SetNativeControl(CreateAdView());
+            SetNativeControl(CreateAdView());
         }
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
