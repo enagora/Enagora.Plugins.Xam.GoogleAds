@@ -11,7 +11,8 @@ namespace Enagora.Plugins.Xam.GoogleAds
     public class GoogleAds :  IGoogleAds
     {
         public string AppId { get; set; }
-        public string AdUnitId { get; set; }
+        public string AdUnitIdBanner { get; set; }
+        public string AdUnitIdInterstitial { get; set; }
 
         public event EventHandler InterstitialAdLoaded;
         public event EventHandler InterstitialAdClosed;

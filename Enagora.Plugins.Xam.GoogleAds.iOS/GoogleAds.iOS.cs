@@ -14,7 +14,9 @@ namespace Enagora.Plugins.Xam.GoogleAds
     public class GoogleAds : IGoogleAds
     {
         public string AppId {  get; set; }
-        public string AdUnitId { get; set; }
+
+        public string AdUnitIdBanner { get; set; }
+        public string AdUnitIdInterstitial { get; set; }
 
         public event EventHandler InterstitialAdLoaded;
         public event EventHandler InterstitialAdClosed;
@@ -42,10 +44,10 @@ namespace Enagora.Plugins.Xam.GoogleAds
 
         public void LoadInterstitialAd(string adUnitId)
         {
-            if (string.IsNullOrEmpty(AdUnitId) || interstitial == null)
+            if ((AdUnitIdInterstitial != adUnitId) || interstitial == null)
             {
                 interstitial = new InterstitialEx(adUnitId);
-                AdUnitId = adUnitId;
+                AdUnitIdInterstitial = adUnitId;
                 interstitial.ScreenDismissed += (sender, e) =>
                 {
                     interstitial.LoadRequest(Request.GetDefaultRequest());
@@ -68,6 +70,10 @@ namespace Enagora.Plugins.Xam.GoogleAds
         public void LoadBannerAdView(object view)
         {
             banner = (BannerView)view;
+            if (string.IsNullOrEmpty(banner.AdUnitID))
+                return;
+
+            AdUnitIdBanner = banner.AdUnitID;
             banner.LoadRequest(Request.GetDefaultRequest());
             banner.AdReceived += OnBannerAdLoaded;
 

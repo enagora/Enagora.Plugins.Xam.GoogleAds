@@ -35,7 +35,9 @@ namespace Enagora.Plugins.Xam.GoogleAds
         AdView banner;
 
         public string AppId { get; set; }
-        public string AdUnitId { get; set; }
+
+        public string AdUnitIdBanner{ get; set; }
+        public string AdUnitIdInterstitial{ get; set; }
 
         public event EventHandler InterstitialAdLoaded;
         public event EventHandler InterstitialAdClosed;
@@ -69,16 +71,26 @@ namespace Enagora.Plugins.Xam.GoogleAds
         public void LoadBannerAdView(object view)
         {
             //if(banner == null)
-            banner = (AdView)view;
-            
-            banner.LoadAd(new AdRequest.Builder().Build());
-           
-            banner.AdListener = new BannerListener(this);
+            try
+            {
+                banner = (AdView)view;
+
+                if (string.IsNullOrEmpty(banner.AdUnitId))
+                    return;
+
+                banner.LoadAd(new AdRequest.Builder().Build());
+
+                banner.AdListener = new BannerListener(this);
 
 
+                AdUnitIdBanner = banner.AdUnitId;
 
-
-            banner.RefreshDrawableState();
+                banner.RefreshDrawableState();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Google.Ads.Android.cs => LoadBannerAdView", ex);
+            }
 
 
         }
@@ -99,6 +111,10 @@ namespace Enagora.Plugins.Xam.GoogleAds
         /// <param name="adUnitId">googleAds ad id</param>
         public void LoadInterstitialAd(string adUnitId)
         {
+            if(!string.IsNullOrEmpty(adUnitId))
+                AdUnitIdInterstitial = adUnitId;
+
+
             if (interstial == null)
             {
                 interstial = new InterstitialAd(Application.Context);
@@ -107,8 +123,10 @@ namespace Enagora.Plugins.Xam.GoogleAds
                 interstial.RewardedVideoAdClosed += Interstial_RewardedVideoAdClosed;
             }
 
-            if(string.IsNullOrEmpty(interstial.AdUnitId))
+            if (string.IsNullOrEmpty(interstial.AdUnitId))
+            {
                 interstial.AdUnitId = adUnitId;
+            }
                         
 
             interstial.LoadAd(new AdRequest.Builder().Build());

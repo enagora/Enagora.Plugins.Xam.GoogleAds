@@ -12,8 +12,9 @@ namespace Enagora.Plugins.Xam.GoogleAds.Interfaces
         event EventHandler BannerAdLoaded;
 
         string AppId { get; set; }
-        string AdUnitId { get; set; }
-
+        
+        string AdUnitIdBanner { get; set; }
+        string AdUnitIdInterstitial { get; set; }
 
         //Methods
         void Initialize(string appId);
