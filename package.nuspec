@@ -2,7 +2,7 @@
 <package>
   <metadata minClientVersion="2.8.1">
     <id>Enagora.Plugins.Xam.GoogleAds</id>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <title>Xamarin Google Ads Plugin</title>
     <authors>Uraitz Olaizola</authors>
     <owners>Enagora</owners>

@@ -34,12 +34,12 @@ namespace Enagora.Plugins.Xam.GoogleAds
 
         public bool IsLoaded()
         {
-            return interstitial.IsLoaded;
+            return interstitial?.IsLoaded ?? false;
         }
 
         public bool IsLoading()
         {
-            return interstitial.IsLoading;
+            return interstitial?.IsLoading ?? false;
         }
 
         public void LoadInterstitialAd(string adUnitId)
